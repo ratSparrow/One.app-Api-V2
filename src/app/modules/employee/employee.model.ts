@@ -36,6 +36,6 @@ const EmployeeSchema: Schema = new Schema<IEmployee>({
 });
 
 
-export const Employee = model('Employee', EmployeeSchema);
+export const Employee = model('employee', EmployeeSchema);
 
 

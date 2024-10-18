@@ -90,4 +90,4 @@ const CustomerSchema = new mongoose.Schema({
         },
     });
 
-export const Customer = model<ICustomer, CustomerModel>('Customer', CustomerSchema);
+export const Customer = model<ICustomer, CustomerModel>('customer', CustomerSchema);

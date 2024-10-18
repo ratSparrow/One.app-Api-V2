@@ -22,4 +22,4 @@ const BranchSchema = new Schema<IBranch>(
   },
 )
 
-export const Branch = model<IBranch, BranchModel>('services', BranchSchema)
+export const Branch = model<IBranch, BranchModel>('branch', BranchSchema)

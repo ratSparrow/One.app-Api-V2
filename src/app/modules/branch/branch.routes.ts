@@ -8,7 +8,7 @@ import { BranchValidation } from './branch.validation'
 const router = express.Router()
 
 router.post(
-  '/create-branch',
+  '/create',
   RequestValidation.ValidateRequest(BranchValidation.createBranch),
 //   auth(ENUM_USER_ROLE.ADMIN),
   AllBranchController.createBranch,
