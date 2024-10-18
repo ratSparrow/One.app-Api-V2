@@ -16,7 +16,7 @@ const getAllServiceCategory = async () => {
 
 
 const getServiceCategoryById = async (id: string) => {
-  const result = await ServiceCategory.find({branch:id})
+  const result = await ServiceCategory.find({branch:id}).populate('branch')
   return result
 }
 

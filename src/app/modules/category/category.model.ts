@@ -6,7 +6,7 @@ const ServiceCategorySchema = new Schema<IServiceCategory>(
   {
     branch: {
       type: Schema.Types.ObjectId,
-      ref: 'Branch',
+      ref: 'branch',
       required: true,
     },
     name: {
