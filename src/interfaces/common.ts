@@ -2,8 +2,8 @@ import { IGenericErrorMessage } from './error'
 
 export type UserName = {
   firstName: string
-  lastName: string
-  middleName: string
+  lastName?: string
+  middleName?: string
 }
 
 export type IGenericResponse<T> = {
