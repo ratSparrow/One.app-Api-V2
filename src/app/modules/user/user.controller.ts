@@ -21,10 +21,23 @@ const createCustomer: RequestHandler = catchAsync(async (req, res) => {
     data: result,
   })
 })
+const createEmployee: RequestHandler = catchAsync(async (req, res) => {
+  const { employee, ...user } = req.body
+  console.log(req.body)
+  const result = await UserService.createEmployeeService(user, employee)
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Employee added successfully!',
+    data: result,
+  })
+})
 
 
 
 export const UserController = {
   createCustomer,
+  createEmployee
 
 }

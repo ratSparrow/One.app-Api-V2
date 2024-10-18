@@ -8,6 +8,10 @@ router.post(
   '/create-customer',
   UserController.createCustomer
 )
+router.post(
+  '/add-employee',
+  UserController.createEmployee
+)
 
 
 export const UserRoutes = {

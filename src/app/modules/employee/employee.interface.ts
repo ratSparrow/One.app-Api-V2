@@ -1,5 +1,5 @@
 
-import { Types } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { UserName } from "../../../interfaces/common";
 
 export type PerformanceReview = {
@@ -10,14 +10,16 @@ export type PerformanceReview = {
     reviewDate: Date;
 }
 export type IEmployee = {
-    id: number;
+    id: string;
     name:UserName
     email: string;
     phone:string
-    branch: string;
+    branch: Types.ObjectId | string;
     role: "Employee"; 
     hireDate: Date;
     salary: number;
     photo?:string;
-    performanceReviews: PerformanceReview[]; 
+    performanceReviews?: PerformanceReview[]; 
 }
+
+export type UserModel = Model<IEmployee, object>
