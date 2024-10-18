@@ -124,3 +124,17 @@
   label: 'HI',
   timestamp: '2024-10-18T16:32:00.617Z'
 }
+{
+  message: 'database connected',
+  level: 'info',
+  service: 'user-service',
+  label: 'HI',
+  timestamp: '2024-10-18T16:32:24.864Z'
+}
+{
+  message: 'Application listening on port 3000',
+  level: 'info',
+  service: 'user-service',
+  label: 'HI',
+  timestamp: '2024-10-18T16:32:24.872Z'
+}
