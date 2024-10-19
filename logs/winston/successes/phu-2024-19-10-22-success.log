@@ -1,0 +1,14 @@
+{
+  message: 'database connected',
+  level: 'info',
+  service: 'user-service',
+  label: 'HI',
+  timestamp: '2024-10-19T16:15:07.205Z'
+}
+{
+  message: 'Application listening on port 3000',
+  level: 'info',
+  service: 'user-service',
+  label: 'HI',
+  timestamp: '2024-10-19T16:15:07.226Z'
+}
