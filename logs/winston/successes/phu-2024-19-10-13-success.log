@@ -1,0 +1,70 @@
+{
+  message: 'database connected',
+  level: 'info',
+  service: 'user-service',
+  label: 'HI',
+  timestamp: '2024-10-19T07:05:59.176Z'
+}
+{
+  message: 'Application listening on port 3000',
+  level: 'info',
+  service: 'user-service',
+  label: 'HI',
+  timestamp: '2024-10-19T07:05:59.197Z'
+}
+{
+  message: 'database connected',
+  level: 'info',
+  service: 'user-service',
+  label: 'HI',
+  timestamp: '2024-10-19T07:06:35.806Z'
+}
+{
+  message: 'Application listening on port 3000',
+  level: 'info',
+  service: 'user-service',
+  label: 'HI',
+  timestamp: '2024-10-19T07:06:35.830Z'
+}
+{
+  message: 'database connected',
+  level: 'info',
+  service: 'user-service',
+  label: 'HI',
+  timestamp: '2024-10-19T07:06:46.469Z'
+}
+{
+  message: 'Application listening on port 3000',
+  level: 'info',
+  service: 'user-service',
+  label: 'HI',
+  timestamp: '2024-10-19T07:06:46.488Z'
+}
+{
+  message: 'database connected',
+  level: 'info',
+  service: 'user-service',
+  label: 'HI',
+  timestamp: '2024-10-19T07:08:00.400Z'
+}
+{
+  message: 'Application listening on port 3000',
+  level: 'info',
+  service: 'user-service',
+  label: 'HI',
+  timestamp: '2024-10-19T07:08:00.420Z'
+}
+{
+  message: 'database connected',
+  level: 'info',
+  service: 'user-service',
+  label: 'HI',
+  timestamp: '2024-10-19T07:11:34.828Z'
+}
+{
+  message: 'Application listening on port 3000',
+  level: 'info',
+  service: 'user-service',
+  label: 'HI',
+  timestamp: '2024-10-19T07:11:34.842Z'
+}

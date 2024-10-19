@@ -12,12 +12,24 @@ import { UserService } from './user.service'
 const createCustomer: RequestHandler = catchAsync(async (req, res) => {
   const { customer, ...user } = req.body
   console.log(req.body)
-  const result = await UserService.createStudentService(user, customer)
+  const result = await UserService.createCustomerService(user, customer)
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Customer sign up successful!',
+    data: result,
+  })
+})
+const createAccountant: RequestHandler = catchAsync(async (req, res) => {
+  const { accountant, ...user } = req.body
+  console.log(req.body)
+  const result = await UserService.createAccountantService(user, accountant)
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Accountant added successfully!',
     data: result,
   })
 })
@@ -38,6 +50,7 @@ const createEmployee: RequestHandler = catchAsync(async (req, res) => {
 
 export const UserController = {
   createCustomer,
-  createEmployee
+  createEmployee,
+  createAccountant
 
 }

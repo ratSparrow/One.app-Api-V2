@@ -9,6 +9,10 @@ router.post(
   UserController.createCustomer
 )
 router.post(
+  '/add-accountant',
+  UserController.createAccountant
+)
+router.post(
   '/add-employee',
   UserController.createEmployee
 )

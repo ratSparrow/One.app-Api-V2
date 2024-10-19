@@ -1,6 +1,7 @@
 import express from 'express'
 import { ParamsDictionary, RequestHandler } from 'express-serve-static-core'
 import { ParsedQs } from 'qs'
+import { AccountantRoutes } from '../modules/accountant/accountant.routes'
 import { BranchRoutes } from '../modules/branch/branch.routes'
 import { ServiceCategoryRoutes } from '../modules/category/category.routes'
 import { CustomerRoutes } from '../modules/customer/customer.routes'
@@ -30,6 +31,10 @@ const moduleRoutes:any = [
     {
         path: '/customer/',
         route: CustomerRoutes.router,
+    },
+    {
+        path: '/accountant/',
+        route: AccountantRoutes.router,
     },
 ]
 

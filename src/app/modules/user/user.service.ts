@@ -5,15 +5,19 @@ import mongoose from 'mongoose';
 import { IUser } from './user.interface';
 
 import config from '../../../config';
-import { generateCustomerId } from './user.utils';
-import { Customer } from '../customer/customer.model';
 import ApiError from '../../errors/ApiError';
-import { User } from './user.model';
 import { ICustomer } from '../customer/customer.interface';
+import { Customer } from '../customer/customer.model';
+import { User } from './user.model';
+import { generateCustomerId } from './user.utils';
+
+
+import { IAccountant } from '../accountant/accountant.interface';
+import { Accountant } from '../accountant/accountant.model';
 import { IEmployee } from '../employee/employee.interface';
 import { Employee } from '../employee/employee.model';
 
-const createStudentService = async (
+const createCustomerService = async (
   user: IUser,
   customer: ICustomer
 ): Promise<IUser | null> => {
@@ -23,9 +27,6 @@ const createStudentService = async (
   if (!user.password) {
     user.password = config.default_customer_pass as string
   }
-
-  
-
   //set role
   user.role = 'Customer'
 
@@ -63,6 +64,53 @@ const createStudentService = async (
 
   return newUserAllData
 }
+const createAccountantService = async (
+  user: IUser,
+  accountant: IAccountant
+): Promise<IUser | null> => {
+  // auto generated incremental id
+
+  //default password
+  if (!user.password) {
+    user.password = config.default_customer_pass as string
+  }
+
+  //set role
+  user.role = 'Accountant'
+
+
+  let newUserAllData
+  const session = await mongoose.startSession()
+  try {
+    session.startTransaction()
+    const id = await generateCustomerId()
+    user.id = id
+    accountant.id = id;
+
+    // create accountant
+    const newAccountant = await Accountant.create([accountant], { session })
+    if (!newAccountant.length) {
+      throw new ApiError(httpStatus.BAD_REQUEST, 'Failed to create')
+    }
+    console.log("newAccountant",newAccountant)
+    //set accountant id to user.accountant
+    user.accountant = newAccountant[0]
+    const newUser = await User.create([user], { session })
+    if (!newUser.length) {
+      throw new ApiError(httpStatus.BAD_REQUEST, 'Failed to create')
+     }
+
+    newUserAllData = newUser[0]
+    await session.commitTransaction()
+    await session.endSession()
+  } catch (error) {
+    await session.abortTransaction()
+    await session.endSession()
+    throw error
+  }
+
+  return newUserAllData
+}
 const createEmployeeService = async (
   user: IUser,
   employee: IEmployee
@@ -73,11 +121,8 @@ const createEmployeeService = async (
   if (!user.password) {
     user.password = config.default_customer_pass as string
   }
-
-  
-
   //set role
-  user.role = 'Customer'
+  user.role = 'Employee'
 
 
   let newUserAllData
@@ -119,6 +164,7 @@ const createEmployeeService = async (
 
 
 export const UserService = {
-  createStudentService,
-  createEmployeeService
+  createCustomerService,
+  createEmployeeService,
+  createAccountantService
 }

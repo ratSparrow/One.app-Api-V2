@@ -1,3 +1,4 @@
+import { Model } from "mongoose";
 import { UserName } from "../../../interfaces/common";
 
 export type IAccountant = {
@@ -14,13 +15,6 @@ export type IAccountant = {
     contactNumber: string;
     address: string;
     photo?:string;
-    availability: {
-        monday: boolean;
-        tuesday: boolean;
-        wednesday: boolean;
-        thursday: boolean;
-        friday: boolean;
-        saturday: boolean;
-        sunday: boolean;
-    }
 }
+
+export type AccountantModel = Model<IAccountant, object>
