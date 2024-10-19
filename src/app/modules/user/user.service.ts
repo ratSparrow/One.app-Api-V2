@@ -9,13 +9,14 @@ import ApiError from '../../errors/ApiError';
 import { ICustomer } from '../customer/customer.interface';
 import { Customer } from '../customer/customer.model';
 import { User } from './user.model';
-import { generateCustomerId } from './user.utils';
+import { generateAccountantId, generateAdminId, generateCustomerId, generateEmployeeId } from './user.utils';
 
 
 import { IAccountant } from '../accountant/accountant.interface';
 import { Accountant } from '../accountant/accountant.model';
 import { IEmployee } from '../employee/employee.interface';
 import { Employee } from '../employee/employee.model';
+import { IAdmin } from '../admin/admin.interface';
 
 const createCustomerService = async (
   user: IUser,
@@ -25,7 +26,7 @@ const createCustomerService = async (
 
   //default password
   if (!user.password) {
-    user.password = config.default_customer_pass as string
+    user.password = config.default_pass as string
   }
   //set role
   user.role = 'Customer'
@@ -72,7 +73,7 @@ const createAccountantService = async (
 
   //default password
   if (!user.password) {
-    user.password = config.default_customer_pass as string
+    user.password = config.default_pass as string
   }
 
   //set role
@@ -83,7 +84,7 @@ const createAccountantService = async (
   const session = await mongoose.startSession()
   try {
     session.startTransaction()
-    const id = await generateCustomerId()
+    const id = await generateAccountantId()
     user.id = id
     accountant.id = id;
 
@@ -115,11 +116,11 @@ const createEmployeeService = async (
   user: IUser,
   employee: IEmployee
 ): Promise<IUser | null> => {
-  // auto generated incremental id
+
 
   //default password
   if (!user.password) {
-    user.password = config.default_customer_pass as string
+    user.password = config.default_pass as string
   }
   //set role
   user.role = 'Employee'
@@ -129,7 +130,8 @@ const createEmployeeService = async (
   const session = await mongoose.startSession()
   try {
     session.startTransaction()
-    const id = await generateCustomerId()
+      // auto generated incremental id
+    const id = await generateEmployeeId()
     user.id = id
     employee.id = id;
 
@@ -157,6 +159,50 @@ const createEmployeeService = async (
 
   return newUserAllData
 }
+const createAdminService = async (
+  user: IUser,
+  admin: IAdmin
+): Promise<IUser | null> => {
+  //default password
+  if (!user.password) {
+    user.password = config.default_pass as string
+  }
+  //set role
+  user.role = 'Admin'
+
+
+  let newUserAllData
+  const session = await mongoose.startSession()
+  try {
+    session.startTransaction()
+    const id = await generateAdminId()
+    user.id = id
+    admin.id = id;
+
+    // create admin
+    const newAdmin = await Employee.create([admin], { session })
+    if (!newAdmin.length) {
+      throw new ApiError(httpStatus.BAD_REQUEST, 'Failed to create')
+    }
+    console.log("newAdmin",newAdmin)
+    //set admin id to user.admin
+    user.admin = newAdmin[0]._id as undefined
+    const newUser = await User.create([user], { session })
+    if (!newUser.length) {
+      throw new ApiError(httpStatus.BAD_REQUEST, 'Failed to create')
+     }
+
+    newUserAllData = newUser[0]
+    await session.commitTransaction()
+    await session.endSession()
+  } catch (error) {
+    await session.abortTransaction()
+    await session.endSession()
+    throw error
+  }
+
+  return newUserAllData
+}
 
 
 
@@ -166,5 +212,6 @@ const createEmployeeService = async (
 export const UserService = {
   createCustomerService,
   createEmployeeService,
-  createAccountantService
+  createAccountantService,
+  createAdminService
 }

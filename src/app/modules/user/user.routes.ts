@@ -16,6 +16,10 @@ router.post(
   '/add-employee',
   UserController.createEmployee
 )
+router.post(
+  '/add-admin',
+  UserController.createAdmin
+)
 
 
 export const UserRoutes = {

@@ -2,12 +2,13 @@ import express from 'express'
 import { ParamsDictionary, RequestHandler } from 'express-serve-static-core'
 import { ParsedQs } from 'qs'
 import { AccountantRoutes } from '../modules/accountant/accountant.routes'
+import { AdminRoutes } from '../modules/admin/admin.routes'
 import { BranchRoutes } from '../modules/branch/branch.routes'
 import { ServiceCategoryRoutes } from '../modules/category/category.routes'
 import { CustomerRoutes } from '../modules/customer/customer.routes'
+import { EmployeeRoutes } from '../modules/employee/employee.routes'
 import { PackagesRoutes } from '../modules/packages/packages.routes'
 import { UserRoutes } from '../modules/user/user.routes'
-import { EmployeeRoutes } from '../modules/employee/employee.routes'
 
 
 const router = express.Router()
@@ -40,6 +41,10 @@ const moduleRoutes:any = [
     {
         path: '/employee/',
         route: EmployeeRoutes.router,
+    },
+    {
+        path: '/admin/',
+        route: AdminRoutes.router,
     },
 ]
 

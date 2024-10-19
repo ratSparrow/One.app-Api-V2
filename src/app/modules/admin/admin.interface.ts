@@ -1,4 +1,4 @@
-import { Types } from "mongoose";
+import { Model, Types } from "mongoose";
 import { UserName } from "../../../interfaces/common";
 import { IBranch } from "../branch/branch.interface";
 
@@ -14,3 +14,5 @@ export type IAdmin = {
     isAdmin: true,
     permissions: boolean
 };
+
+export type AdminModel = Model<IAdmin, object>
