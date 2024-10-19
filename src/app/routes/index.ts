@@ -7,6 +7,7 @@ import { ServiceCategoryRoutes } from '../modules/category/category.routes'
 import { CustomerRoutes } from '../modules/customer/customer.routes'
 import { PackagesRoutes } from '../modules/packages/packages.routes'
 import { UserRoutes } from '../modules/user/user.routes'
+import { EmployeeRoutes } from '../modules/employee/employee.routes'
 
 
 const router = express.Router()
@@ -35,6 +36,10 @@ const moduleRoutes:any = [
     {
         path: '/accountant/',
         route: AccountantRoutes.router,
+    },
+    {
+        path: '/employee/',
+        route: EmployeeRoutes.router,
     },
 ]
 
