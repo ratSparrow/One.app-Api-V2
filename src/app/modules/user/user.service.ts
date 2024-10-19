@@ -1,22 +1,17 @@
-
-
 import httpStatus from 'http-status';
 import mongoose from 'mongoose';
-import { IUser } from './user.interface';
-
 import config from '../../../config';
 import ApiError from '../../errors/ApiError';
-import { ICustomer } from '../customer/customer.interface';
-import { Customer } from '../customer/customer.model';
-import { User } from './user.model';
-import { generateAccountantId, generateAdminId, generateCustomerId, generateEmployeeId } from './user.utils';
-
-
 import { IAccountant } from '../accountant/accountant.interface';
 import { Accountant } from '../accountant/accountant.model';
+import { IAdmin } from '../admin/admin.interface';
+import { ICustomer } from '../customer/customer.interface';
+import { Customer } from '../customer/customer.model';
 import { IEmployee } from '../employee/employee.interface';
 import { Employee } from '../employee/employee.model';
-import { IAdmin } from '../admin/admin.interface';
+import { IUser } from './user.interface';
+import { User } from './user.model';
+import { generateAccountantId, generateAdminId, generateCustomerId, generateEmployeeId } from './user.utils';
 
 const createCustomerService = async (
   user: IUser,
@@ -203,11 +198,6 @@ const createAdminService = async (
 
   return newUserAllData
 }
-
-
-
-
-
 
 export const UserService = {
   createCustomerService,

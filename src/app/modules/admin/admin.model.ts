@@ -20,12 +20,12 @@ const AdminSchema = new Schema({
   },
   branch: {
     type: Schema.Types.ObjectId,
-    ref: 'Branch', 
+    ref: 'Branch',
     required: true
   },
   role: {
     type: String,
-    enum: ['Admin'], 
+    enum: ['Admin'],
     default: 'Admin',
     required: true
   },
@@ -45,6 +45,11 @@ const AdminSchema = new Schema({
     type: Boolean,
     required: true
   }
+}, {
+  timestamps: true,
+  toJSON: {
+    virtuals: true,
+  },
 });
 
 export const Admin = model('admin', AdminSchema);
